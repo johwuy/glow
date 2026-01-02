@@ -1,0 +1,39 @@
+{
+    "name": "Glow - Next.js + FastAPI",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12",
+    "mounts": [
+        {
+            "type": "bind",
+            "source": "${localWorkspaceFolder}",
+            "target": "/workspace"
+        },
+        {
+            "type": "volume",
+            "source": "glow-node-modules",
+            "target": "/workspace/web/node_modules"
+        }
+    ],
+    "workspaceFolder": "/workspace",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "24"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "dbaeumer.vscode-eslint",
+                "bradlc.vscode-tailwindcss",
+                "esbenp.prettier-vscode"
+            ]
+        }
+    },
+    "postCreateCommand": "cd web && npm install && cd ../api && pip install -r requirements.txt",
+    "forwardPorts": [
+        3000,
+        8000
+    ],
+    "remoteUser": "vscode"
+}
